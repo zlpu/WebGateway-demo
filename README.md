@@ -73,19 +73,17 @@ Invoke-WebRequest https://raw.githubusercontent.com/zlpu/webgateway-demo/main/do
 
 ### 3. 设置首次登录信息
 
-在 `docker-compose.yml` 同一目录创建 `.env` 文件：
+编辑 `docker-compose.yml` 中 `services.webgateway.environment` 下的参数：
 
-```dotenv
-TZ=Asia/Shanghai
-INITIAL_ADMIN_EMAIL=webgateway
-INITIAL_ADMIN_PASSWORD=请替换为至少8位的强密码
-LETSENCRYPT_EMAIL=admin@example.com
-
-# 可选：启用 IP 归属地数据时填写
-GEOLITE2_LICENSE_KEY=
+```yaml
+TZ: "Asia/Shanghai"
+INITIAL_ADMIN_EMAIL: "webgateway"
+INITIAL_ADMIN_PASSWORD: "REPLACE_WITH_A_STRONG_PASSWORD"
+LETSENCRYPT_EMAIL: "admin@example.com"
+GEOLITE2_LICENSE_KEY: ""
 ```
 
-`INITIAL_ADMIN_EMAIL` 是首次登录使用的账户名，可先使用 `webgateway`。首次登录后，系统会要求你设置有效邮箱并更换初始密码；完成后请使用新邮箱和新密码重新登录。请勿将 `.env` 分享到公开位置。
+请将 `INITIAL_ADMIN_PASSWORD` 替换为至少 8 位的强密码，并将 `LETSENCRYPT_EMAIL` 改成有效邮箱。`INITIAL_ADMIN_EMAIL` 是首次登录使用的账户名，默认是 `webgateway`。首次登录后，系统会要求你设置有效邮箱并更换初始密码；完成后请使用新邮箱和新密码重新登录。密码保存在 YAML 文件中，请限制该文件的访问权限。
 
 ### 4. 启动并检查服务
 
@@ -102,7 +100,7 @@ docker compose logs -f webgateway
 http://服务器地址:8234
 ```
 
-首次启动会准备系统数据，可能需要几十秒。浏览器首次访问时使用 `.env` 中设置的账户名和密码。
+首次启动会准备系统数据，可能需要几十秒。浏览器首次访问时使用 `docker-compose.yml` 中设置的账户名和密码。
 
 ### 5. 常用 Compose 命令
 
@@ -161,8 +159,8 @@ Compose 默认开放 Web 访问所需的 80、443 和管理端口 8234。使用 
 | --- | --- | --- |
 | `TZ` | 系统显示时区 | `Asia/Shanghai` |
 | `INITIAL_ADMIN_EMAIL` | 首次登录账户名 | `webgateway` |
-| `INITIAL_ADMIN_PASSWORD` | 首次登录密码 | 必填，请自行设置 |
-| `LETSENCRYPT_EMAIL` | 证书申请与到期通知邮箱 | 必填 |
+| `INITIAL_ADMIN_PASSWORD` | 首次登录密码 | 请在 YAML 中设置至少 8 位的强密码 |
+| `LETSENCRYPT_EMAIL` | 证书申请与到期通知邮箱 | 请在 YAML 中设置有效邮箱 |
 | `GEOLITE2_LICENSE_KEY` | IP 归属地数据更新许可 | 可留空 |
 | `ANALYTICS_RETENTION_DAYS` | 分析数据保留天数 | `30` |
 | `WAF_AUTO_BLOCK_THRESHOLD` | 自动封禁触发阈值；`0` 表示关闭 | `0` |
