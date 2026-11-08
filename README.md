@@ -14,6 +14,7 @@
 </div>
 
 ---
+<img width="1912" height="966" alt="image" src="https://github.com/user-attachments/assets/56188a8b-7e16-4b18-ba29-39976bb8e514" />
 
 ## ✨ 关于 WebGateway
 
