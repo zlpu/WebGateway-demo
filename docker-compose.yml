@@ -1,0 +1,25 @@
+services:
+  webgateway:
+    image: registry.cn-chengdu.aliyuncs.com/pzl_devops/webgateway:v1.0.0
+    container_name: webgateway
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8234:8234"
+    environment:
+      TZ: "${TZ:-Asia/Shanghai}"
+      INITIAL_ADMIN_EMAIL: "${INITIAL_ADMIN_EMAIL:-webgateway}"
+      INITIAL_ADMIN_PASSWORD: "${INITIAL_ADMIN_PASSWORD:?请先在 .env 中设置首次登录密码}"
+      LETSENCRYPT_EMAIL: "${LETSENCRYPT_EMAIL:?请先在 .env 中设置有效邮箱}"
+      DB_SQLITE_FILE: "/data/database.sqlite"
+      ANALYTICS_ENABLED: "true"
+      ANALYTICS_RETENTION_DAYS: "${ANALYTICS_RETENTION_DAYS:-30}"
+      GEOLITE2_LICENSE_KEY: "${GEOLITE2_LICENSE_KEY:-}"
+      WAF_ENABLED: "true"
+      WAF_AUTO_BLOCK_THRESHOLD: "${WAF_AUTO_BLOCK_THRESHOLD:-0}"
+      WAF_AUTO_BLOCK_WINDOW_SEC: "300"
+      WAF_AUTO_BLOCK_TTL_SEC: "3600"
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
