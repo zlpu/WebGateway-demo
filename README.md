@@ -118,7 +118,9 @@ http://服务器地址:8234
 
 ### 第一步：完善账户资料
 
-首次登录按页面提示修改密码并填写有效邮箱。进入右上角用户菜单，可随时更新个人资料；个人头像支持 JPG、PNG 图片，单张最大 2 MB。
+首次登录按页面提示修改密码并填写有效邮箱。进入右上角用户菜单，可随时更新个人资料；个人头像支持 JPG、PNG 图片，单张最大 2 MB。<img width="1912" height="966" alt="image" src="https://github.com/user-attachments/assets/c39518ba-75af-40c1-b3cf-77e597d0ccee" />
+<img width="1912" height="966" alt="image" src="https://github.com/user-attachments/assets/4fbd0d03-37fe-4448-b98f-75093566e6d1" />
+
 
 ### 第二步：准备域名与上游服务
 
